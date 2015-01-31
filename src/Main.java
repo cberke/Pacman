@@ -3,6 +3,15 @@ import java.awt.*;
 
 
 public class Main {
+	// 0 = dot
+	// 1 = wall
+	// 2 = blank
+	// 3 = pacman
+	// 4 = ghost1
+	// 5 = ghost2
+	// 6 = ghost3
+	// 7 = ghost4
+	// 1 space = 25 by 25 block
 	private static int[][] board = {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -42,15 +51,6 @@ public class Main {
 		DrawingPanel panel = new DrawingPanel(800, 800);
 		Graphics g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
-		// 0 = dot
-		// 1 = wall
-		// 2 = blank
-		// 3 = pacman
-		// 4 = ghost1
-		// 5 = ghost2
-		// 6 = ghost3
-		// 7 = ghost4
-		// 1 space = 25 by 25 block
 		display(g);
 		
 	}
