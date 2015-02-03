@@ -51,8 +51,8 @@ public class Main {
 	public static void main(String args[]){
 		Toolkit toolkit =  Toolkit.getDefaultToolkit ();
 		Dimension dim = toolkit.getScreenSize();
-		int height = dim.height;
-		int width = dim.width;
+		int height = dim.height - 150;
+		int width = dim.width - 50;
 		DrawingPanel panel = new DrawingPanel(width, height);
 		Graphics g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
