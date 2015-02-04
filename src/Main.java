@@ -2,16 +2,7 @@ import java.util.*;
 import java.awt.*;
 
 
-public class Main {
-	// 0 = dot
-	// 1 = wall
-	// 2 = blank
-	// 3 = pacman
-	// 4 = ghost1
-	// 5 = ghost2
-	// 6 = ghost3
-	// 7 = ghost4
-	// 1 space = 25 by 25 block
+public class Main{
 	private static int[][] board = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, 
@@ -52,13 +43,10 @@ public class Main {
 		Toolkit toolkit =  Toolkit.getDefaultToolkit ();
 		Dimension dim = toolkit.getScreenSize();
 		int height = dim.height - 150;
-		int width = dim.width - 50;
+		int width = dim.height - 150;
 		DrawingPanel panel = new DrawingPanel(width, height);
 		Graphics g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
-<<<<<<< HEAD
-		display(g);
-=======
 		// 0 = dot
 		// 1 = wall
 		// 2 = blank
@@ -69,32 +57,43 @@ public class Main {
 		// 7 = ghost4
 		// 8 = door
 		// 1 space = 25 by 25 block
-		int boxW = width / 32;
-		int boxH = height / 32;
+		double boxW = Math.round(width / 32);
+		double boxH = Math.round(height / 32);
 		display(g, boxW, boxH);
->>>>>>> origin/master
-		
+		//for(int i = 0; i <800; i++){
+			//g.setColor(Color.YELLOW);
+	//		g.fillOval(i, 100, boxW - 10, boxH -10);
+		//	try {
+			//	Thread.sleep(15);
+		//	} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//}
+			//g.setColor(Color.BLACK);
+		//	g.fillRect(i, 100, boxW - 5, boxH - 5);
+			
+		//}
 	}
 	
-	public static void display(Graphics g, int width, int height){
+	public static void display(Graphics g, double width, double height){
+		Graphics2D g2 = (Graphics2D) g;
 		for(int i = 0; i < board.length; i++){
 			for(int j = 0; j < board[i].length; j++){
 				//Draw dots
 				if(board[j][i] ==  0){
 					g.setColor(Color.YELLOW);
-					g.fillOval((i * width) + (width/2), (j * height) + (height/2), 7, 7);
+					g.fillOval((int)Math.round((i * width) + (width/2)), (int)Math.round((j * height) + (height/2)), 5, 5);
 				}
 				//Draw walls
 				else if(board[j][i] == 1){
 					g.setColor(Color.BLUE);
-					g.drawRect(i * width, j * height, width, height);
+					g.drawRect((int)Math.round(i * width), (int)Math.round(j * height), (int)Math.round(width), (int)Math.round(height));
 				}
 				//Draw doors
 				else if(board[j][i] == 8){
 					g.setColor(Color.BLUE); 
-					g.drawRect(i * width, (j * height) + 5, width, height - ((height/5) * 2)); 
-				} 
-
+					g.drawRect((int)Math.round(i * width), (int)Math.round((j * height) + 5), (int)Math.round(width), (int)Math.round(height - ((height/5) * 2))); 
+				}
 			}
 		}
 	}
