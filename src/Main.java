@@ -60,6 +60,18 @@ public class Main{
 		double boxW = Math.round(width / 32);
 		double boxH = Math.round(height / 32);
 		display(g, boxW, boxH);
+		for(int i = 0; i <800; i++){
+			g.setColor(Color.YELLOW);
+			g.fillOval(i, 100, (int)boxW - 10, (int)boxH -10);
+			try {
+				Thread.sleep(15);
+			} catch (InterruptedException e) {
+			//	 TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			g.setColor(Color.BLACK);
+			g.fillRect(i, 100, (int)boxW - 5, (int)boxH - 5);
+		}
 	}
 	
 	public static void display(Graphics g, double width, double height){
