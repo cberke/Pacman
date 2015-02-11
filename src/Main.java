@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
 
-
 public class Main {
 	
 	// 0 = dot
