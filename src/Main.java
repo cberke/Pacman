@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
-//Main Class
+//Main Class 
 public class Main {
 	
 	// 0 = dot
@@ -61,7 +61,7 @@ public class Main {
 	
 	public static void main(String args[]){
 		Manager game = new Manager();
-		//game.play();
+		game.playGame();
 		
 	}
 	
