@@ -1,6 +1,10 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+//37 = left
+//38 = up
+//39 = right
+//40 = down
 
 public class Manager implements KeyListener {
 	Board board;
