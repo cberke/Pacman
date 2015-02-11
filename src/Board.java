@@ -6,11 +6,11 @@ import java.awt.Toolkit;
 
 
 public class Board {
-	public static DrawingPanel panel;
-	public static Graphics g;
+	public DrawingPanel panel;
+	public Graphics g;
 	
-	public static double boxH;
-	public static double boxW;
+	public double boxH;
+	public double boxW;
 	
 	public static int [] pacPosition = {0,0};
 	
