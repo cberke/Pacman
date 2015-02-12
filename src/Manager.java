@@ -12,31 +12,37 @@ public class Manager implements KeyListener {
 	private boolean isGaming;
 	//private boolean inBox;
 	private int key;
+	
 	public Manager(){
 		board = new Board();
 		//inBox = true;
 		setUP();
 		isGaming = true;
 	}
+	
 	public void setUP(){
 		board.panel.addKeyListener(this);
-	}public void playGame(){
+	}
+	
+	public void playGame(){
 		key = 37;
 		System.out.print(key);
 		while(isGaming){
 			graphic(key);
-			
 		}
-	}public void graphic(int direction){
+	}
+	
+	public void graphic(int direction){
 		int boxH = (int) board.boxH;
 		int boxW = (int) board.boxW;
-		if(direction == 37){//left
+		
+		if(direction == 37) { //left
 			//System.out.print("Here");
 			if(Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
 				//System.out.print("Here");
 				Main.board[board.pacPosition[0]][board.pacPosition[1]-1] = 3;
 				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i <boxW; i++){
+				for(int i = 0; i < boxW; i++){
 					//System.out.println(direction);
 					//blank space
 					board.g.setColor(Color.YELLOW);
@@ -52,13 +58,12 @@ public class Manager implements KeyListener {
 					
 				}board.display2();
 			}
-		}
-		else if(direction == 38){//up
+		} else if(direction == 38) { //up
 			if(Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 8){
 				//System.out.print("Here");
 				Main.board[board.pacPosition[0]-1][board.pacPosition[1]] = 3;
 				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i <boxH; i++){
+				for(int i = 0; i < boxH; i++){
 					//System.out.println(direction);
 					//blank space
 					board.g.setColor(Color.YELLOW);
@@ -74,8 +79,7 @@ public class Manager implements KeyListener {
 					
 				}board.display2();
 			}
-		}
-		else if(direction == 39){//right
+		} else if(direction == 39) { //right
 			if(Main.board[board.pacPosition[0]][board.pacPosition[1]+1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
 				//System.out.print("Here");
 				Main.board[board.pacPosition[0]][board.pacPosition[1]+1] = 3;
@@ -96,8 +100,7 @@ public class Manager implements KeyListener {
 					
 				}board.display2();
 			}
-		}
-		else if(direction == 40){//down
+		} else if(direction == 40) {//down
 			if(Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 8){
 				//System.out.print("Here");
 				Main.board[board.pacPosition[0]+1][board.pacPosition[1]] = 3;
