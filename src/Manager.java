@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 
 public class Manager implements KeyListener {
 	Board board;
-	private boolean isGaming;
+	public static boolean isGaming;
 	//private boolean inBox;
 	private int key;
 	
@@ -17,7 +17,7 @@ public class Manager implements KeyListener {
 		board = new Board();
 		//inBox = true;
 		setUP();
-		isGaming = true;
+		//isGaming = true;
 	}
 	
 	public void setUP(){
@@ -27,7 +27,7 @@ public class Manager implements KeyListener {
 	public void playGame(){
 		key = 37;
 		System.out.print(key);
-		while(isGaming){
+		while(board.panel.getVisible()){
 			graphic(key);
 		}
 	}
@@ -47,12 +47,7 @@ public class Manager implements KeyListener {
 					//blank space
 					board.g.setColor(Color.YELLOW);
 					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6 - i, (int)Math.round((board.pacPosition[0] * boxH)) + 5, 13, 13);
-					try {
-						Thread.sleep(28);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					waiting();
 					board.g.setColor(Color.BLACK);
 					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1) - i, (int)Math.round((board.pacPosition[0] * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
 					
@@ -68,12 +63,7 @@ public class Manager implements KeyListener {
 					//blank space
 					board.g.setColor(Color.YELLOW);
 					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6, (int)Math.round((board.pacPosition[0] * boxH)) + 5 - i, 13, 13);
-					try {
-						Thread.sleep(28);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					waiting();
 					board.g.setColor(Color.BLACK);
 					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1), (int)Math.round((board.pacPosition[0] * boxH) + 5 - i), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
 					
@@ -89,12 +79,7 @@ public class Manager implements KeyListener {
 					//blank space
 					board.g.setColor(Color.YELLOW);
 					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6 + i, (int)Math.round((board.pacPosition[0] * boxH)) + 5, 13, 13);
-					try {
-						Thread.sleep(28);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					waiting();
 					board.g.setColor(Color.BLACK);
 					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1 + i), (int)Math.round((board.pacPosition[0] * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
 					
@@ -110,12 +95,7 @@ public class Manager implements KeyListener {
 					//blank space
 					board.g.setColor(Color.YELLOW);
 					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6, (int)Math.round((board.pacPosition[0] * boxH)) + 5 + i, 13, 13);
-					try {
-						Thread.sleep(28);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					waiting();
 					board.g.setColor(Color.BLACK);
 					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1), (int)Math.round((board.pacPosition[0] * boxH) + 5 + i), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
 					
@@ -133,4 +113,12 @@ public class Manager implements KeyListener {
 	
 	public void keyTyped(KeyEvent e) { } 
 
+	public void waiting(){
+		try {
+			Thread.sleep(14);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

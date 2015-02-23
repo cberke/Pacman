@@ -306,6 +306,7 @@ public final class DrawingPanel extends FileFilter
                                 // and main has finished executing
                                 if ((instances == 0 || shouldSave()) && !mainIsActive()) {
                                     try {
+                                    	
                                         System.exit(0);
                                     } catch (SecurityException sex) {}
                                 }
@@ -694,6 +695,9 @@ public final class DrawingPanel extends FileFilter
         }
     }
     
+    public boolean getVisible(){
+    	return frame.isVisible();
+    }
     // sets the drawing panel's width in pixels to the given value
     // After calling this method, the client must call getGraphics() again
     // to get the new graphics context of the newly enlarged image buffer.
