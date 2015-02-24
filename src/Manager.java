@@ -86,7 +86,7 @@ public class Manager implements KeyListener {
 				}board.display2();
 			}
 		} else if(direction == 40) {//down
-			if(Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 8){
+			if(Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 8){
 				//System.out.print("Here");
 				Main.board[board.pacPosition[0]+1][board.pacPosition[1]] = 3;
 				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
