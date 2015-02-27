@@ -1,6 +1,4 @@
-/.project
 /Board.class
-/Dot.class
 /DrawingPanel$1.class
 /DrawingPanel$2.class
 /DrawingPanel$3.class
@@ -19,6 +17,5 @@
 /DrawingPanel$ReverseColorMap.class
 /DrawingPanel.class
 /Main.class
-/Manager.class
-/Pacman.class
-/Wall.class
+/Point.class
+/Ghost.class
