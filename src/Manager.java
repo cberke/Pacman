@@ -103,6 +103,12 @@ public class Manager implements KeyListener {
 			}
 		}  
 	}
+	
+	public void DrawGhost(Point gCoord){
+		//Rewrite code to be better
+		board.g.setColor(Color.CYAN);
+		board.g.fillRect((int)gCoord.y * (int)board.boxW, (int)gCoord.x * (int)board.boxH, 10, 10);
+	}
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		System.out.println(arg0.getKeyCode());
