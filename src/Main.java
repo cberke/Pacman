@@ -55,6 +55,8 @@ public class Main {
 	
 	public static void main(String args[]){
 		Manager game = new Manager();
+		Ghost h = new Ghost(1, 1);
+		h.bfs(game);
 		game.playGame();
 		
 	}
