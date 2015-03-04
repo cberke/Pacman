@@ -9,15 +9,13 @@ import java.awt.event.KeyListener;
 
 public class Manager implements KeyListener {
 	Board board;
-	public static boolean isGaming;
-	//private boolean inBox;
+	private int inBox;
 	private int key;
 	
 	public Manager(){
 		board = new Board();
-		//inBox = true;
+		inBox = 32;
 		setUP();
-		//isGaming = true;
 	}
 	
 	public void setUP(){
@@ -26,89 +24,58 @@ public class Manager implements KeyListener {
 	
 	public void playGame(){
 		key = 37;
+		int direction = key;
+		Point current = new Point(board.pacPosition[0], board.pacPosition[1]);
+		Point old;
 		System.out.print(key);
+		Ghost one = new Ghost(1, 1);
 		while(board.panel.getVisible()){
-			graphic(key);
+			direction = inBox==32? key : direction;
+			if(direction == 37) { //left
+				if(Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
+					old = current;
+					current = old.addY(-1);
+					graphic(old, current);
+				}
+				else{
+					inBox = 32;
+				}
+			}
+			else if(direction == 38) { //up
+				if(Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 8){
+					old = current;
+					current = old.addX(-1);
+					graphic(old, current);
+				}
+			}
+			else if(direction == 39) { //right
+				if(Main.board[board.pacPosition[0]][board.pacPosition[1]+1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
+					old = current;
+					current = old.addY(1);
+					graphic(old, current);
+				}
+			}
+			else if(direction == 40) {//down
+				if(Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 8){
+					old = current;
+					current = old.addX(1);
+					graphic(old, current);
+				}
+			}
+			waiting();
+			one.bfs(board);
 		}
 	}
 	
-	public void graphic(int direction){
+	public void graphic(Point old, Point current){
 		int boxH = (int) board.boxH;
 		int boxW = (int) board.boxW;
-		
-		if(direction == 37) { //left
-			//System.out.print("Here");
-			if(Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
-				//System.out.print("Here");
-				Main.board[board.pacPosition[0]][board.pacPosition[1]-1] = 3;
-				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i < boxW; i++){
-					//System.out.println(direction);
-					//blank space
-					board.g.setColor(Color.YELLOW);
-					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6 - i, (int)Math.round((board.pacPosition[0] * boxH)) + 5, 13, 13);
-					waiting();
-					board.g.setColor(Color.BLACK);
-					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1) - i, (int)Math.round((board.pacPosition[0] * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
-					
-				}board.display2();
-			}
-		} else if(direction == 38) { //up
-			if(Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]-1][board.pacPosition[1]] != 8){
-				//System.out.print("Here");
-				Main.board[board.pacPosition[0]-1][board.pacPosition[1]] = 3;
-				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i < boxH; i++){
-					//System.out.println(direction);
-					//blank space
-					board.g.setColor(Color.YELLOW);
-					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6, (int)Math.round((board.pacPosition[0] * boxH)) + 5 - i, 13, 13);
-					waiting();
-					board.g.setColor(Color.BLACK);
-					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1), (int)Math.round((board.pacPosition[0] * boxH) + 5 - i), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
-					
-				}board.display2();
-			}
-		} else if(direction == 39) { //right
-			if(Main.board[board.pacPosition[0]][board.pacPosition[1]+1] != 1  && Main.board[board.pacPosition[0]][board.pacPosition[1]-1] != 8){
-				//System.out.print("Here");
-				Main.board[board.pacPosition[0]][board.pacPosition[1]+1] = 3;
-				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i <boxW; i++){
-					//System.out.println(direction);
-					//blank space
-					board.g.setColor(Color.YELLOW);
-					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6 + i, (int)Math.round((board.pacPosition[0] * boxH)) + 5, 13, 13);
-					waiting();
-					board.g.setColor(Color.BLACK);
-					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1 + i), (int)Math.round((board.pacPosition[0] * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
-					
-				}board.display2();
-			}
-		} else if(direction == 40) {//down
-			if(Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 1  && Main.board[board.pacPosition[0]+1][board.pacPosition[1]] != 8){
-				//System.out.print("Here");
-				Main.board[board.pacPosition[0]+1][board.pacPosition[1]] = 3;
-				Main.board[board.pacPosition[0]][board.pacPosition[1]] = 2;
-				for(int i = 0; i <boxH; i++){
-					//System.out.println(direction);
-					//blank space
-					board.g.setColor(Color.YELLOW);
-					board.g.fillOval((int)Math.round((board.pacPosition[1] * boxW)) + 6, (int)Math.round((board.pacPosition[0] * boxH)) + 5 + i, 13, 13);
-					waiting();
-					board.g.setColor(Color.BLACK);
-					board.g.fillRect((int)Math.round((board.pacPosition[1] * boxW)+1), (int)Math.round((board.pacPosition[0] * boxH) + 5 + i), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2)));
-					
-				}board.display2();
-			}
-		}  
+		board.g.setColor(Color.YELLOW);
+		board.g.fillOval((int)Math.round((current.x * boxW)) + 6, (int)Math.round((current.y * boxH)) + 5, 13, 13);
+		board.g.setColor(Color.BLACK);
+		board.g.fillRect((int)Math.round((old.x * boxW)+1), (int)Math.round((old.y * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2))); 
 	}
 	
-	public void DrawGhost(Point gCoord){
-		//Rewrite code to be better
-		board.g.setColor(Color.CYAN);
-		board.g.fillRect((int)gCoord.y * (int)board.boxW, (int)gCoord.x * (int)board.boxH, 10, 10);
-	}
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		System.out.println(arg0.getKeyCode());

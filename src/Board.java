@@ -72,4 +72,8 @@ public class Board {
 			}
 		}
 	}
+	public void DrawGhost(Point gCoord){
+		g.setColor(Color.CYAN);
+		g.fillRect((int)gCoord.y * (int)boxW, (int)gCoord.x * (int)boxH, 10, 10);
+	}
 }

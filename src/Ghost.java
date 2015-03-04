@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.*;
 
 
@@ -9,7 +8,7 @@ public class Ghost {
 		current = new Point(x, y);
 	}
 
-	public void bfs(Manager game){
+	public void bfs(Board game){
 		boolean[][] pointsExplored = new boolean[32][32];
 		Point[][] path = new Point[32][32];
 		path[current.x][current.y] = new Point(current.x, current.y);
@@ -22,7 +21,7 @@ public class Ghost {
 			Point top = next.element();
 			next.remove();
 			for(int i = 0; i < 4; i++){
-				if(Main.board[top.x + x[i]][top.y + y[i]] != 1 && pointsExplored[top.x + x[i]][top.y + y[i]] == false){
+				if(Main.board[top.x + x[i]][top.y + y[i]] != 1 && Main.board[top.x + x[i]][top.y + y[i]] != 8 && pointsExplored[top.x + x[i]][top.y + y[i]] == false){
 					pointsExplored[top.x + x[i]][top.y + y[i]] = true;
 					path[top.x + x[i]][top.y + y[i]] = top;
 					next.add(new Point(top.x + x[i], top.y + y[i]));
@@ -31,14 +30,12 @@ public class Ghost {
 		}
 		Point cCheck = new Point(Board.pacPosition[0], Board.pacPosition[1]);
 		ArrayList<Point> pathToTake = new ArrayList<Point>();
-		while(true){
+		do{
 			System.out.println(cCheck.x + " " + cCheck.y);
 			pathToTake.add(cCheck);
-			if(cCheck == current){
-				break;
-			}
-			cCheck = path[cCheck.x][cCheck.y];
-		}
+				cCheck = path[cCheck.x][cCheck.y];
+		}while(cCheck != current);
 			game.DrawGhost(pathToTake.get(pathToTake.size() - 1));
+			current = pathToTake.get(pathToTake.size() - 1);
 	}
 }
