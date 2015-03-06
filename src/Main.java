@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 
 //Main Class, contains driver function
 
@@ -53,7 +55,7 @@ public class Main {
 
 
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws IOException{
 		Manager game = new Manager();
 		game.playGame();
 		

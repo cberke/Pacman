@@ -7,6 +7,7 @@ public class Ghost {
 	public Point currentOnPoint;
 	public Point oldOnPoint;
 	public boolean first;
+	public int waitToComeOut = 20;
 
 	public Ghost(int x, int y){
 		current = new Point(x, y);
@@ -17,7 +18,8 @@ public class Ghost {
 	}
 
 	public void bfs(Board game){
-		if(current.x == game.pacPosition[0] && current.y == game.pacPosition[1]){
+		if(current.x == game.pacPosition[0] && current.y == game.pacPosition[1] || waitToComeOut > 0){
+			waitToComeOut--;
 			return;
 		}
 		boolean[][] pointsExplored = new boolean[32][32];
@@ -32,7 +34,7 @@ public class Ghost {
 			Point top = next.element();
 			next.remove();
 			for(int i = 0; i < 4; i++){
-				if(Main.board[top.x + x[i]][top.y + y[i]] != 1 && Main.board[top.x + x[i]][top.y + y[i]] != 8 && pointsExplored[top.x + x[i]][top.y + y[i]] == false){
+				if(Main.board[top.x + x[i]][top.y + y[i]] != 1 && pointsExplored[top.x + x[i]][top.y + y[i]] == false){
 					pointsExplored[top.x + x[i]][top.y + y[i]] = true;
 					path[top.x + x[i]][top.y + y[i]] = top;
 					next.add(new Point(top.x + x[i], top.y + y[i]));

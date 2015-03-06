@@ -12,6 +12,9 @@ public class Board {
 	public int boxH;
 	public int boxW;
 	
+	private int numDotsEaten;
+	private int numDotsTotal;
+	
 	public static int [] pacPosition = {0,0};
 	
 	public Board(){
@@ -22,6 +25,8 @@ public class Board {
 		panel = new DrawingPanel(dim.height - 150, dim.height - 150);
 		g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
+		numDotsEaten = 0;
+		numDotsTotal = 0;
 		display();
 	}
 	public void display(){
@@ -30,6 +35,7 @@ public class Board {
 			for(int j = 0; j < Main.board[i].length; j++){
 				//Draw dots
 				if(Main.board[j][i] ==  0){
+					numDotsTotal++;
 					g.setColor(Color.YELLOW);
 					g.fillOval((i * boxW) + (boxW/2), (j * boxH) + (boxH/2), 5, 5);
 				}
@@ -60,9 +66,15 @@ public class Board {
 		for(int i = 0; i < Main.board.length; i++){
 			for(int j = 0; j < Main.board[i].length; j++){
 				//Draw dots
+				if(Main.board[j][i] ==  0){
+					g.setColor(Color.BLACK);
+					g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
+					g.setColor(Color.YELLOW);
+					g.fillOval((i * boxW) + (boxW/2), (j * boxH) + (boxH/2), 5, 5);
+				}
 				if(Main.board[j][i] ==  2){
-					//g.setColor(Color.BLACK);
-					//g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
+					g.setColor(Color.BLACK);
+					g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
 				}else if (Main.board[j][i] == 3){
 					//g.setColor(Color.YELLOW);
 					//g.fillOval((int)Math.round((i * boxW)) + 5, (int)Math.round((j * boxH)) + 5, 13, 13);
@@ -71,5 +83,17 @@ public class Board {
 				}
 			}
 		}
+	}
+	
+	public int getDotsEaten(){
+		return numDotsEaten;
+	}
+	
+	public int getDotsTotal(){
+		return numDotsTotal;
+	}
+	
+	public void addDotsEaten(){
+		numDotsEaten++;
 	}
 }
