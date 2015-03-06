@@ -9,16 +9,16 @@ public class Board {
 	public DrawingPanel panel;
 	public Graphics g;
 	
-	public double boxH;
-	public double boxW;
+	public int boxH;
+	public int boxW;
 	
 	public static int [] pacPosition = {0,0};
 	
 	public Board(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dim = toolkit.getScreenSize();
-		boxW = Math.round((dim.height - 150) / 32);
-		boxH = Math.round((dim.height - 150) / 32);
+		boxW = (dim.height - 150) / 32;
+		boxH = (dim.height - 150) / 32;
 		panel = new DrawingPanel(dim.height - 150, dim.height - 150);
 		g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
@@ -31,23 +31,23 @@ public class Board {
 				//Draw dots
 				if(Main.board[j][i] ==  0){
 					g.setColor(Color.YELLOW);
-					g.fillOval((int)Math.round((i * boxW) + (boxW/2)), (int)Math.round((j * boxH) + (boxH/2)), 5, 5);
+					g.fillOval((i * boxW) + (boxW/2), (j * boxH) + (boxH/2), 5, 5);
 				}
 				//Draw walls
 				else if(Main.board[j][i] == 1){
 					g.setColor(Color.BLUE);
-					g.drawRect((int)Math.round(i * boxW), (int)Math.round(j * boxH), (int)Math.round(boxW), (int)Math.round(boxH));
+					g.drawRect(i * boxW, j * boxH, boxW, boxH);
 				}
 				//Draw doors
 				else if(Main.board[j][i] == 8){
 					g.setColor(Color.BLUE); 
-					g.drawRect((int)Math.round(i * boxW), (int)Math.round((j * boxH) + 5), (int)Math.round(boxW), (int)Math.round(boxH - ((boxH/5) * 2))); 
+					g.drawRect(i * boxW, (j * boxH) + 5, boxW, boxH - ((boxH/5) * 2)); 
 				}if(Main.board[j][i] ==  2){
-					g.setColor(Color.BLACK);
-					g.fillRect((int)Math.round(i * boxW)+1, (int)Math.round((j * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2))); 
+					//g.setColor(Color.BLACK);
+					//g.fillRect(i * boxW+1, (j * boxH) + 5, boxW-1, boxH - ((boxH/5) * 2)); 
 				}else if (Main.board[j][i] == 3){
-					g.setColor(Color.YELLOW);
-					g.fillOval((int)Math.round((i * boxW)) + 5, (int)Math.round((j * boxH)) + 5, 13, 13);
+					//g.setColor(Color.YELLOW);
+					//g.fillOval((i * boxW) + 5, (j * boxH) + 5, 13, 13);
 					pacPosition[0] = j;
 					pacPosition[1] = i;
 				}
@@ -61,19 +61,15 @@ public class Board {
 			for(int j = 0; j < Main.board[i].length; j++){
 				//Draw dots
 				if(Main.board[j][i] ==  2){
-					g.setColor(Color.BLACK);
-					g.fillRect((int)Math.round(i * boxW)+1, (int)Math.round((j * boxH) + 5), (int)Math.round(boxW)-1, (int)Math.round(boxH - ((boxH/5) * 2))); 
+					//g.setColor(Color.BLACK);
+					//g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
 				}else if (Main.board[j][i] == 3){
-					g.setColor(Color.YELLOW);
-					g.fillOval((int)Math.round((i * boxW)) + 6, (int)Math.round((j * boxH)) + 5, 13, 13);
+					//g.setColor(Color.YELLOW);
+					//g.fillOval((int)Math.round((i * boxW)) + 5, (int)Math.round((j * boxH)) + 5, 13, 13);
 					pacPosition[0] = j;
 					pacPosition[1] = i;
 				}
 			}
 		}
-	}
-	public void DrawGhost(Point gCoord){
-		g.setColor(Color.CYAN);
-		g.fillRect((int)gCoord.y * (int)boxW, (int)gCoord.x * (int)boxH, 10, 10);
 	}
 }

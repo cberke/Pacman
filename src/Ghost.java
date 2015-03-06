@@ -3,12 +3,23 @@ import java.util.*;
 
 public class Ghost {
 	private Point current;
+	public Point oldPos;
+	public Point currentOnPoint;
+	public Point oldOnPoint;
+	public boolean first;
 
 	public Ghost(int x, int y){
 		current = new Point(x, y);
+		oldPos = new Point(0, 0);
+		currentOnPoint = new Point(x, y);
+		oldOnPoint = new Point(0, 0);
+		first = true;
 	}
 
 	public void bfs(Board game){
+		if(current.x == game.pacPosition[0] && current.y == game.pacPosition[1]){
+			return;
+		}
 		boolean[][] pointsExplored = new boolean[32][32];
 		Point[][] path = new Point[32][32];
 		path[current.x][current.y] = new Point(current.x, current.y);
@@ -31,11 +42,27 @@ public class Ghost {
 		Point cCheck = new Point(Board.pacPosition[0], Board.pacPosition[1]);
 		ArrayList<Point> pathToTake = new ArrayList<Point>();
 		do{
-			System.out.println(cCheck.x + " " + cCheck.y);
+			//System.out.println(cCheck.x + " " + cCheck.y);
 			pathToTake.add(cCheck);
-				cCheck = path[cCheck.x][cCheck.y];
+			cCheck = path[cCheck.x][cCheck.y];
 		}while(cCheck != current);
-			game.DrawGhost(pathToTake.get(pathToTake.size() - 1));
-			current = pathToTake.get(pathToTake.size() - 1);
+			oldPos = new Point(current.x, current.y);
+			current = new Point(pathToTake.get(pathToTake.size() - 1).x, pathToTake.get(pathToTake.size() - 1).y);
+			oldOnPoint = new Point(current.x * game.boxW, current.y * game.boxH);
+			currentOnPoint = new Point(current.x * game.boxW, current.y * game.boxH);
+			}
+	
+	public void addX(int x){
+		currentOnPoint.x += x;
+		oldOnPoint.x += x; 
+	}
+	
+	public void addY(int y){
+		currentOnPoint.y += y;
+		oldOnPoint.y += y; 
+	}
+	
+	public Point getCurrent(){
+		return current;
 	}
 }
