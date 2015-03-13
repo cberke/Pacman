@@ -17,10 +17,13 @@ public class Ghost {
 		first = true;
 	}
 
-	public void bfs(Board game){
-		if(current.x == game.pacPosition[0] && current.y == game.pacPosition[1] || waitToComeOut > 0){
+	public boolean bfs(Board game){
+		if((waitToComeOut > 0)){
 			waitToComeOut--;
-			return;
+			return false;
+		}
+		if((current.x == game.pacPosition[0] && current.y == game.pacPosition[1]) || (current.x + 1 == game.pacPosition[0] && current.y == game.pacPosition[1]) || (current.x - 1 == game.pacPosition[0] && current.y == game.pacPosition[1]) || (current.x == game.pacPosition[0] && current.y + 1 == game.pacPosition[1]) || (current.x == game.pacPosition[0] && current.y - 1 == game.pacPosition[1])){
+			return true;
 		}
 		boolean[][] pointsExplored = new boolean[32][32];
 		Point[][] path = new Point[32][32];
@@ -52,7 +55,8 @@ public class Ghost {
 			current = new Point(pathToTake.get(pathToTake.size() - 1).x, pathToTake.get(pathToTake.size() - 1).y);
 			oldOnPoint = new Point(current.x * game.boxW, current.y * game.boxH);
 			currentOnPoint = new Point(current.x * game.boxW, current.y * game.boxH);
-			}
+			return false;
+		}
 	
 	public void addX(int x){
 		currentOnPoint.x += x;
