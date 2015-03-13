@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -27,9 +28,11 @@ public class Board {
 		panel.setBackground(Color.BLACK);
 		numDotsEaten = 0;
 		numDotsTotal = 0;
-		display();
+		//display();
 	}
 	public void display(){
+		numDotsTotal = 0;
+		numDotsEaten = 0;
 		Graphics2D g2 = (Graphics2D) g;
 		for(int i = 0; i < Main.board.length; i++){
 			for(int j = 0; j < Main.board[i].length; j++){
