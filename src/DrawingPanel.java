@@ -3108,4 +3108,7 @@ public final class DrawingPanel extends FileFilter
         os.write(i16 & 0xff);
         os.write(i16 >> 8 & 0xff);
     }
+    public JFrame getFrame(){
+    	return frame;
+    }
 }

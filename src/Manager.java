@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -15,6 +17,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -39,9 +42,9 @@ public class Manager implements KeyListener {
 	}
 	
 	public void playGame() throws IOException{
-		/*while(key != 10){
-			waiting(1);
-		}*/
+		//while(key != 10){
+		//	waiting(1);
+		//}
 		key = 37;
 		int direction = key;
 		Point current = new Point(board.pacPosition[1] * board.boxW, board.pacPosition[0] * board.boxH);
