@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -37,6 +39,9 @@ public class Manager implements KeyListener {
 	}
 	
 	public void playGame() throws IOException{
+		/*while(key != 10){
+			waiting(1);
+		}*/
 		key = 37;
 		int direction = key;
 		Point current = new Point(board.pacPosition[1] * board.boxW, board.pacPosition[0] * board.boxH);
@@ -110,24 +115,27 @@ public class Manager implements KeyListener {
 				}
 			}
 			//System.out.println(inBox + " " + board.boxH);
+			boolean gameOver = false;
 			if(inBox==board.boxH){
-				one.bfs(board);
+				gameOver = one.bfs(board);
 				board.display2();
 				current = new Point(board.pacPosition[1] * board.boxW, board.pacPosition[0] * board.boxH);
 				if(board.getDotsEaten() == board.getDotsTotal()){
-					board.g.setColor(Color.CYAN);
+					board.g.setColor(new Color(3, 9, 128));
 					board.g.fillRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 					board.g.setColor(Color.BLACK);
-					board.g.drawString("Congratulations! You win!", (board.boxW * 32 + 150)/2, (board.boxH * 32 + 150)/2);
+					board.g.setFont(new Font("Winning", Font.ITALIC, 100));
+					board.g.drawString("Level Complete", 10, (board.boxH * 32 + 150)/2);
 					break;
 				}
 			}
-			waiting();
-			if(one.getCurrent().x == board.pacPosition[0] && one.getCurrent().y == board.pacPosition[1]){
+			waiting(14);
+			if(gameOver){
 				Random rand = new Random();
 				int twat = rand.nextInt(20);
-				System.out.println(twat);
 				if(twat ==  13){
+					board.g.setColor(Color.BLACK);
+					board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 					JFrame f = new JFrame();
 			        ImageIcon reel = new ImageIcon("9e7[1].gif");
 			        JLabel label = new JLabel(reel);
@@ -139,13 +147,20 @@ public class Manager implements KeyListener {
 			        f.setSize(800, 450);
 			        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			        f.setVisible(true);
+			        break;
 				}
-				else{
+				board.g.setColor(Color.CYAN);
+				board.g.fillRect(board.pacPosition[1] * board.boxW + 5, board.pacPosition[0] * board.boxH + 5, 10, 10);
+				waiting(500);
+				if(twat != 13){
+					board.g.setColor(Color.BLACK);
 					board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
-					board.g.setColor(Color.RED);
-					board.g.drawString("Game Over", (board.boxW * 32 + 150)/2, (board.boxH * 32 + 150)/2);
+					board.g.setColor(new Color(150, 0, 0));
+					board.g.setFont(new Font("Game_Over", Font.BOLD, 100));
+					board.g.drawString("Game Over", 10, (board.boxH * 32 + 150)/2);
 					break;
 				}
+				board.g.setColor(Color.BLACK);
 				board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 				break;
 			}
@@ -203,9 +218,9 @@ public class Manager implements KeyListener {
 	
 	public void keyTyped(KeyEvent e) { } 
 
-	public void waiting(){
+	public void waiting(int waitTime){
 		try {
-			Thread.sleep(14);
+			Thread.sleep(waitTime);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
