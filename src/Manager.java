@@ -117,6 +117,8 @@ public class Manager implements KeyListener {
 				if(board.getDotsEaten() == board.getDotsTotal()){
 					board.g.setColor(Color.CYAN);
 					board.g.fillRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
+					board.g.setColor(Color.BLACK);
+					board.g.drawString("Congratulations! You win!", (board.boxW * 32 + 150)/2, (board.boxH * 32 + 150)/2);
 					break;
 				}
 			}
@@ -137,6 +139,10 @@ public class Manager implements KeyListener {
 			        f.setSize(800, 450);
 			        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			        f.setVisible(true);
+				}
+				else{
+					board.g.setColor(Color.RED);
+					board.g.drawString("Game Over", (board.boxW * 32 + 150)/2, (board.boxH * 32 + 150)/2);
 				}
 				board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 				break;
