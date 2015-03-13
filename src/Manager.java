@@ -141,8 +141,10 @@ public class Manager implements KeyListener {
 			        f.setVisible(true);
 				}
 				else{
+					board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 					board.g.setColor(Color.RED);
 					board.g.drawString("Game Over", (board.boxW * 32 + 150)/2, (board.boxH * 32 + 150)/2);
+					break;
 				}
 				board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 				break;
