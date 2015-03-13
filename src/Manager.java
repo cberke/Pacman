@@ -30,10 +30,12 @@ public class Manager implements KeyListener {
 	Board board;
 	private int inBox;
 	private int key;
+	private boolean started;
 	
 	public Manager(){
 		board = new Board();
 		inBox = board.boxW;
+		started = false;
 		setUP();
 	}
 	
@@ -42,9 +44,23 @@ public class Manager implements KeyListener {
 	}
 	
 	public void playGame() throws IOException{
-		//while(key != 10){
-		//	waiting(1);
-		//}
+		Main.board = new int[32][32];
+		for(int i = 0; i < 32; i++){
+			for(int j = 0; j < 32; j++){
+				Main.board[i][j] = Main.originalBoard[i][j];
+			}
+		}
+		started = false;
+		board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
+		board.g.setColor(Color.WHITE);
+		board.g.setFont(new Font("Enter_To_Start", Font.PLAIN, 50));
+		board.g.drawString("Press Enter to Start", 10, (board.boxH * 32 + 150)/2);
+		while(key != 10 && board.panel.getVisible()){
+			waiting(1);
+		}
+		board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
+		started = true;
+		board.display();
 		key = 37;
 		int direction = key;
 		Point current = new Point(board.pacPosition[1] * board.boxW, board.pacPosition[0] * board.boxH);
@@ -161,7 +177,8 @@ public class Manager implements KeyListener {
 					board.g.setColor(new Color(150, 0, 0));
 					board.g.setFont(new Font("Game_Over", Font.BOLD, 100));
 					board.g.drawString("Game Over", 10, (board.boxH * 32 + 150)/2);
-					break;
+					waiting(5000);
+					playGame();
 				}
 				board.g.setColor(Color.BLACK);
 				board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
@@ -214,7 +231,7 @@ public class Manager implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		//System.out.println(arg0.getKeyCode());
-		key = arg0.getKeyCode();
+		key = ((arg0.getKeyCode() < 41 && arg0.getKeyCode() > 36) || (arg0.getKeyCode() == 10 && !started)) ? arg0.getKeyCode() : key;
 	}
 	
 	public void keyReleased(KeyEvent e) { }
