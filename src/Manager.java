@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -20,6 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import org.omg.CORBA.portable.InputStream;
 
 //37 = left
 //38 = up
@@ -32,8 +36,11 @@ public class Manager implements KeyListener {
 	private int key;
 	private boolean started;
 	
-	public Manager(){
+	public Manager() throws IOException{
 		board = new Board();
+		FileInputStream imgStream = new FileInputStream("Icon.png");
+		BufferedImage myImg = ImageIO.read(imgStream);
+		board.panel.getFrame().setIconImage(myImg);
 		inBox = board.boxW;
 		started = false;
 		setUP();
