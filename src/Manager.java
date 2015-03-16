@@ -148,7 +148,7 @@ public class Manager implements KeyListener {
 					break;
 				}
 			}
-			waiting(14);
+			waiting(13);
 			if(gameOver){
 				Random rand = new Random();
 				int twat = rand.nextInt(20);
@@ -191,39 +191,39 @@ public class Manager implements KeyListener {
 		int boxH = (int) board.boxH;
 		int boxW = (int) board.boxW;
 		board.g.setColor(Color.BLACK);
-		board.g.fillRect((old.x)+1, (old.y) + 1, boxW-1, boxH - ((boxH/5) * 2) + 4);
+		board.g.fillRect((old.x)+1, (old.y) + 1, boxW-1, boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652)) + (int)Math.round(boxH * 0.17391304));
 		board.g.setColor(Color.YELLOW);
-		board.g.fillOval((current.x) + 6, (current.y) + 5, 13, 13);
+		board.g.fillOval((current.x) + (int)Math.round(boxW * 0.26086957), (current.y) + (int)Math.round(boxH * 0.2173913), (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 		if(one.getCurrent().x == one.oldPos.x){
 			if(one.getCurrent().y < one.oldPos.y){
 				board.g.setColor(Color.BLACK);
-				board.g.fillRect(one.oldOnPoint.y + 4 + board.boxW, one.oldOnPoint.x + 4, 13, 13);
+				board.g.fillRect(one.oldOnPoint.y + (int)Math.round(boxH * 0.17391304) + board.boxW, one.oldOnPoint.x + (int)Math.round(boxH * 0.17391304), (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 				one.addY(-1);
 				board.g.setColor(Color.CYAN);
-				board.g.fillRect(one.currentOnPoint.y + 5 + board.boxW, one.currentOnPoint.x + 5, 10, 10);
+				board.g.fillRect(one.currentOnPoint.y + (int)Math.round(boxH * 0.2173913) + board.boxW, one.currentOnPoint.x + (int)Math.round(boxH * 0.2173913), (int) Math.round(boxW * 0.43478261), (int) Math.round(boxH * 0.43478261));
 			}
 			else{
 				board.g.setColor(Color.BLACK);
-				board.g.fillRect(one.oldOnPoint.y + 4 - board.boxW, one.oldOnPoint.x + 4, 13, 13);
+				board.g.fillRect(one.oldOnPoint.y + (int)Math.round(boxH * 0.17391304) - board.boxW, one.oldOnPoint.x + (int)Math.round(boxH * 0.17391304), (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 				one.addY(1);
 				board.g.setColor(Color.CYAN);
-				board.g.fillRect(one.currentOnPoint.y + 5 - board.boxW, one.currentOnPoint.x + 5, 10, 10);
+				board.g.fillRect(one.currentOnPoint.y + (int)Math.round(boxH * 0.2173913) - board.boxW, one.currentOnPoint.x + (int)Math.round(boxH * 0.2173913), (int) Math.round(boxW * 0.43478261), (int) Math.round(boxH * 0.43478261));
 			}
 		}
 		else if(one.getCurrent().y == one.oldPos.y){
 			if(one.getCurrent().x < one.oldPos.x){
 				board.g.setColor(Color.BLACK);
-				board.g.fillRect(one.oldOnPoint.y + 4, one.oldOnPoint.x + 4 + board.boxH, 13, 13);
+				board.g.fillRect(one.oldOnPoint.y + (int)Math.round(boxH * 0.17391304), one.oldOnPoint.x + (int)Math.round(boxH * 0.17391304) + board.boxH, (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 				one.addX(-1);
 				board.g.setColor(Color.CYAN);
-				board.g.fillRect(one.currentOnPoint.y + 5, one.currentOnPoint.x + 5 + board.boxH, 10, 10);
+				board.g.fillRect(one.currentOnPoint.y + (int)Math.round(boxH * 0.2173913), one.currentOnPoint.x + (int)Math.round(boxH * 0.2173913) + board.boxH, (int) Math.round(boxW * 0.43478261), (int) Math.round(boxH * 0.43478261));
 			}
 			else{
 				board.g.setColor(Color.BLACK);
-				board.g.fillRect(one.oldOnPoint.y + 4, one.oldOnPoint.x + 4 - board.boxH, 13, 13);
+				board.g.fillRect(one.oldOnPoint.y + (int)Math.round(boxH * 0.17391304), one.oldOnPoint.x + (int)Math.round(boxH * 0.17391304) - board.boxH, (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 				one.addX(1);
 				board.g.setColor(Color.CYAN);
-				board.g.fillRect(one.currentOnPoint.y + 5, one.currentOnPoint.x + 5 - board.boxH, 10, 10);
+				board.g.fillRect(one.currentOnPoint.y + (int)Math.round(boxH * 0.2173913), one.currentOnPoint.x + (int)Math.round(boxH * 0.2173913) - board.boxH, (int) Math.round(boxW * 0.43478261), (int) Math.round(boxH * 0.43478261));
 			}
 		}
 	}

@@ -40,7 +40,7 @@ public class Board {
 				if(Main.board[j][i] ==  0){
 					numDotsTotal++;
 					g.setColor(Color.YELLOW);
-					g.fillOval((i * boxW) + (boxW/2), (j * boxH) + (boxH/2), 5, 5);
+					g.fillOval((i * boxW) + (boxW/(int)Math.round(boxW * 0.08695652)), (j * boxH) + (boxH/(int)Math.round(boxW * 0.08695652)), (int)Math.round(boxH * 0.2173913), (int)Math.round(boxH * 0.2173913));
 				}
 				//Draw walls
 				else if(Main.board[j][i] == 1){
@@ -50,7 +50,7 @@ public class Board {
 				//Draw doors
 				else if(Main.board[j][i] == 8){
 					g.setColor(Color.BLUE); 
-					g.drawRect(i * boxW, (j * boxH) + 5, boxW, boxH - ((boxH/5) * 2)); 
+					g.drawRect(i * boxW, (j * boxH) + (int)Math.round(boxH * 0.2173913), boxW, boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652))); 
 				}if(Main.board[j][i] ==  2){
 					//g.setColor(Color.BLACK);
 					//g.fillRect(i * boxW+1, (j * boxH) + 5, boxW-1, boxH - ((boxH/5) * 2)); 
@@ -63,7 +63,6 @@ public class Board {
 			}
 		}
 	}
-
 	public void display2(){
 		Graphics2D g2 = (Graphics2D) g;
 		for(int i = 0; i < Main.board.length; i++){
@@ -71,13 +70,13 @@ public class Board {
 				//Draw dots
 				if(Main.board[j][i] ==  0){
 					g.setColor(Color.BLACK);
-					g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
+					g.fillRect((i * boxW)+1, (j * boxH) + (int)Math.round(boxH * 0.2173913), (boxW)-(int)Math.round(boxW * 0.04347826), boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652))); 
 					g.setColor(Color.YELLOW);
-					g.fillOval((i * boxW) + (boxW/2), (j * boxH) + (boxH/2), 5, 5);
+					g.fillOval((i * boxW) + (boxW/(int)Math.round(boxW * 0.08695652)), (j * boxH) + (boxH/(int)Math.round(boxW * 0.08695652)), (int)Math.round(boxH * 0.2173913), (int)Math.round(boxH * 0.2173913));
 				}
 				if(Main.board[j][i] ==  2){
 					g.setColor(Color.BLACK);
-					g.fillRect((i * boxW)+1, (j * boxH) + 5, (boxW)-1, boxH - ((boxH/5) * 2)); 
+					g.fillRect((i * boxW)+(int)Math.round(boxW * 0.04347826), (j * boxH) + (int)Math.round(boxH * 0.2173913), (boxW)-(int)Math.round(boxW * 0.04347826), boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652))); 
 				}else if (Main.board[j][i] == 3){
 					//g.setColor(Color.YELLOW);
 					//g.fillOval((int)Math.round((i * boxW)) + 5, (int)Math.round((j * boxH)) + 5, 13, 13);
