@@ -62,6 +62,10 @@ public class Manager implements KeyListener {
 		board.g.setColor(Color.WHITE);
 		board.g.setFont(new Font("Enter_To_Start", Font.PLAIN, 50));
 		board.g.drawString("Press Enter to Start", 10, (board.boxH * 32 + 150)/2);
+		board.g.setFont(new Font("Enter_To_Start", Font.PLAIN, 30));
+		board.g.drawString("Use the arrow keys to move around", 50, ((board.boxH * 32 + 150)/2) + 70);
+		board.g.drawString("Stopping will kill you", 50, ((board.boxH * 32 + 150)/2) + 100);
+		board.g.drawString("Beware of dead ends", 50, ((board.boxH * 32 + 150)/2) + 130);
 		while(key != 10 && board.panel.getVisible()){
 			waiting(1);
 		}
@@ -198,7 +202,7 @@ public class Manager implements KeyListener {
 		int boxH = (int) board.boxH;
 		int boxW = (int) board.boxW;
 		board.g.setColor(Color.BLACK);
-		board.g.fillRect((old.x)+1, (old.y) + 1, boxW-1, boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652)) + (int)Math.round(boxH * 0.17391304));
+		board.g.fillRect((old.x)+1, (old.y) + 1, boxW-(int)Math.round(boxW * 0.04347826), boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652)) + (int)Math.round(boxH * 0.17391304));
 		board.g.setColor(Color.YELLOW);
 		board.g.fillOval((current.x) + (int)Math.round(boxW * 0.26086957), (current.y) + (int)Math.round(boxH * 0.2173913), (int) Math.round(boxW * 0.56521739), (int) Math.round(boxH * 0.56521739));
 		if(one.getCurrent().x == one.oldPos.x){

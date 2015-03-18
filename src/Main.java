@@ -19,7 +19,6 @@ public class Main {
 	// 6 = ghost3
 	// 7 = ghost4
 	// 8 = door
-	// 1 space = 25 by 25 block
 	
 	public static int[][] originalBoard = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
@@ -62,7 +61,5 @@ public class Main {
 	public static void main(String args[]) throws IOException{
 		Manager game = new Manager();
 		game.playGame();
-		
 	}
-	
 }
