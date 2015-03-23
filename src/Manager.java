@@ -1,29 +1,18 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Image;
-import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import org.omg.CORBA.portable.InputStream;
 
 //37 = left
 //38 = up
@@ -159,7 +148,7 @@ public class Manager implements KeyListener {
 					break;
 				}
 			}
-			waiting(13);
+			waiting(14);
 			if(gameOver){
 				Random rand = new Random();
 				int twat = rand.nextInt(20);
@@ -188,6 +177,8 @@ public class Manager implements KeyListener {
 					board.g.setColor(new Color(150, 0, 0));
 					board.g.setFont(new Font("Game_Over", Font.BOLD, 100));
 					board.g.drawString("Game Over", 10, (board.boxH * 32 + 150)/2);
+					board.g.setFont(new Font("Game_Over", Font.BOLD, 45));
+					board.g.drawString("Game will restart in 5 seconds", 10, ((board.boxH * 32 + 150)/2) + 50);
 					waiting(5000);
 					playGame();
 				}
@@ -195,6 +186,7 @@ public class Manager implements KeyListener {
 				board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
 				break;
 			}
+			
 		}
 	}
 	

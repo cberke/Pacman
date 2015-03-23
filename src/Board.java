@@ -21,8 +21,8 @@ public class Board {
 	public Board(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dim = toolkit.getScreenSize();
-		boxW = (dim.height - 150) / 32;
-		boxH = (dim.height - 150) / 32;
+		boxW = ((dim.height - 150) / 32);
+		boxH = ((dim.height - 150) / 32);
 		panel = new DrawingPanel(dim.height - 150, dim.height - 150);
 		g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
@@ -70,7 +70,7 @@ public class Board {
 				//Draw dots
 				if(Main.board[j][i] ==  0){
 					g.setColor(Color.BLACK);
-					g.fillRect((i * boxW)+1, (j * boxH) + (int)Math.round(boxH * 0.2173913), (boxW)-(int)Math.round(boxW * 0.04347826), boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652))); 
+					g.fillRect((i * boxW)+ (int)Math.round(boxH * .04347826), (j * boxH) + (int)Math.round(boxH * 0.2173913), (boxW)-(int)Math.round(boxW * 0.04347826), boxH - ((boxH/(int)Math.round(boxH * 0.2173913)) * (int)Math.round(boxW * 0.08695652))); 
 					g.setColor(Color.YELLOW);
 					g.fillOval((i * boxW) + (boxW/(int)Math.round(boxW * 0.08695652)), (j * boxH) + (boxH/(int)Math.round(boxW * 0.08695652)), (int)Math.round(boxH * 0.2173913), (int)Math.round(boxH * 0.2173913));
 				}

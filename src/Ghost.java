@@ -7,7 +7,7 @@ public class Ghost {
 	public Point currentOnPoint;
 	public Point oldOnPoint;
 	public boolean first;
-	public int waitToComeOut = 20;
+	public int waitToComeOut = 25;
 
 	public Ghost(int x, int y){
 		current = new Point(x, y);
