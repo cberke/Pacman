@@ -23,6 +23,14 @@ public class Board {
 		Dimension dim = toolkit.getScreenSize();
 		boxW = ((dim.height - 150) / 32);
 		boxH = ((dim.height - 150) / 32);
+		/*String osName = System.getProperty("os.name").toLowerCase();
+		boolean isMacOs = osName.startsWith("mac os x");
+		if (isMacOs) 
+		{
+			System.setProperty("apple.laf.useScreenMenuBar", "true");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Our Pacman Game");
+
+		}*/
 		panel = new DrawingPanel(dim.height - 150, dim.height - 150);
 		g = panel.getGraphics();
 		panel.setBackground(Color.BLACK);
