@@ -53,13 +53,43 @@ public class Manager implements KeyListener {
 		}
 		started = false;
 		board.g.clearRect(0, 0, board.boxW * 32 + 150, board.boxH * 32 + 150);
+		board.g.setColor(Color.GREEN);
+		board.g.setFont(new Font("Title", Font.ITALIC, 45));
+		Random random = new Random();
+		int randnum = random.nextInt(8);
+		if(randnum == 0){
+			board.g.drawString("PACMIN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 1){
+			board.g.drawString("PICMAN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 2){
+			board.g.drawString("PACMUN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 3){
+			board.g.drawString("PAMCAN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 4){
+			board.g.drawString("PUNTCAR", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 5){
+			board.g.drawString("PAMTRAN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 6){
+			board.g.drawString("KRAMPRON", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
+		else if(randnum == 7){
+			board.g.drawString("PACMAAAAAAN", 10, ((board.boxH * 32 + 150)/2)/2);
+		}
 		board.g.setColor(Color.WHITE);
 		board.g.setFont(new Font("Enter_To_Start", Font.PLAIN, 50));
 		board.g.drawString("Press Enter to Start", 10, (board.boxH * 32 + 150)/2);
-		board.g.setFont(new Font("Enter_To_Start", Font.PLAIN, 30));
+		board.g.setFont(new Font("Instructions", Font.PLAIN, 30));
 		board.g.drawString("Use the arrow keys to move around", 50, ((board.boxH * 32 + 150)/2) + 70);
 		board.g.drawString("Stopping will kill you", 50, ((board.boxH * 32 + 150)/2) + 100);
-		board.g.drawString("Beware of dead ends", 50, ((board.boxH * 32 + 150)/2) + 130);
+		if(!Main.originalBoard.equals(Main.originalBoard2)){
+			board.g.drawString("Beware of dead ends", 50, ((board.boxH * 32 + 150)/2) + 130);
+		}
 		while(key != 10 && board.panel.getVisible()){
 			waiting(1);
 		}
@@ -150,6 +180,9 @@ public class Manager implements KeyListener {
 					board.g.setColor(Color.BLACK);
 					board.g.setFont(new Font("Winning", Font.ITALIC, 100));
 					board.g.drawString("Level Complete", 10, (board.boxH * 32 + 150)/2);
+					waiting(5000);
+					Main.originalBoard = Main.originalBoard2;
+					playGame();
 					break;
 				}
 			}
